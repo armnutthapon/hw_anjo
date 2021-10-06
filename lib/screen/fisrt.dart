@@ -16,13 +16,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var name = TextEditingController();
-  var id = TextEditingController();
-  var date = TextEditingController().text;
-  var month = TextEditingController().text;
-  var year = TextEditingController().text;
+  var user_id = TextEditingController();
+  var date = TextEditingController();
+  var month = TextEditingController();
+  var year = TextEditingController();
+
+  String dob = '';
 
   bool isSwitched = false;
   bool _enabled = false;
+
+  void getDOB() {
+    dob = "${date.text} / ${month.text} / ${year.text} ";
+    return;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   children: [
                     Input_From(
-                      input: id,
+                      input: user_id,
                       topic: "ANJO ID",
                       hint: "ระะบุ ID",
                       description:
@@ -117,21 +124,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        // DOB_input(
-                        //   topic: "วัน",
-                        //   hint: "วัน",
-                        //   width: 80,
-                        // ),
-                        // DOB_input(
-                        //   topic: "เดือน",
-                        //   hint: "เดือน",
-                        //   width: 80,
-                        // ),
-                        // DOB_input(
-                        //   topic: "ปี",
-                        //   hint: "ปี",
-                        //   width: 100,
-                        // ),
+                        DOB_input(
+                          topic: "วัน",
+                          hint: "วัน",
+                          width: 80,
+                          input_dob: date,
+                        ),
+                        DOB_input(
+                          topic: "เดือน",
+                          hint: "เดือน",
+                          width: 80,
+                          input_dob: month,
+                        ),
+                        DOB_input(
+                          topic: "ปี",
+                          hint: "ปี",
+                          width: 100,
+                          input_dob: year,
+                        ),
                       ],
                     ),
                   ),
@@ -145,10 +155,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: size.width * 0.9,
                         child: ElevatedButton(
                           onPressed: () {
+                            getDOB();
                             var route = new MaterialPageRoute(
                                 builder: (BuildContext context) => Second(
-                                      name: name.text,
-                                    ));
+                                    name: name.text,
+                                    user_id: user_id.text,
+                                    dob: dob));
                             Navigator.of(context).push(route);
                             // Navigator.push(
                             //   context,

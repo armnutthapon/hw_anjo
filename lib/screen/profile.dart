@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:anjo_homework/components/profile_information.dart';
 import 'package:anjo_homework/components/profile_topic.dart';
 import 'package:flutter/material.dart';
@@ -155,7 +157,10 @@ import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
   final String name;
-  const Profile({Key? key, required this.name}) : super(key: key);
+  final String user_id;
+
+  const Profile({Key? key, required this.name, required this.user_id})
+      : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -203,7 +208,7 @@ class _ProfileState extends State<Profile> {
                   Divider(),
                   Profile_Information(
                     topic: "อาชีพ",
-                    data: "ธุรกิจส่วนตัว",
+                    data: "${widget.user_id}",
                   ),
                   Divider(),
                   Profile_Information(
@@ -266,12 +271,12 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Profile_Information(
                     topic: "ชื่อของฉัน",
-                    data: "ณัฐพล",
+                    data: "${widget.name}",
                   ),
                   Divider(),
                   Profile_Information(
                     topic: "ANJO ID",
-                    data: "NUTTHAPON",
+                    data: "${widget.user_id}",
                   ),
                   Divider(),
                   Toggle_Switch()

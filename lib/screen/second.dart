@@ -9,10 +9,15 @@ import 'package:flutter/material.dart';
 
 class Second extends StatefulWidget {
   final String name;
+  final String user_id;
+
+  final String dob;
 
   const Second({
     Key? key,
     required this.name,
+    required this.user_id,
+    required this.dob,
   }) : super(key: key);
 
   @override
@@ -33,7 +38,7 @@ class _SecondState extends State<Second> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "${widget.name}",
+          "${widget.dob}",
           style: TextStyle(
               fontSize: 20,
               color: Colors.black87,
@@ -71,53 +76,53 @@ class _SecondState extends State<Second> {
                         "เพิ่มคำอธิบายเพิ่มเติมเกี่ยวกับตัวคุณเพื่อแนะนำตัวกับคนอื่นๆใน ANJO เพื่อเพิ่มโอกาสในการแมตช์",
                     icon: Icon(null),
                   ),
-                  Input_From(
+                  Input_From_NoDescription(
                     input: name,
                     topic: "อาชีพ",
                     hint: "อาชีพของฉัน",
-                    description: "",
                     icon: Icon(null),
                   ),
-                  Input_From(
+                  Input_From_NoDescription(
                     input: name,
                     topic: "สถานศึกษา",
                     hint: "อาชีพของฉัน",
-                    description: "",
                     icon: Icon(null),
                   ),
                   Container(
+                      margin: EdgeInsets.only(top: 20),
                       child: SizedBox(
-                    height: 50,
-                    width: size.width * 0.9,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => Profile()),
-                        // );
-                        var route = new MaterialPageRoute(
-                            builder: (BuildContext context) => Profile(
-                                  name: '${widget.name}',
-                                  // name: widget.name,
-                                ));
-                        Navigator.of(context).push(route);
-                      },
-                      child: Text(
-                        "ดำเนินการต่อ",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(20), // <-- Radius
+                        height: 50,
+                        width: size.width * 0.9,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => Profile()),
+                            // );
+                            var route = new MaterialPageRoute(
+                                builder: (BuildContext context) => Profile(
+                                    name: '${widget.name}',
+                                    user_id: '${widget.user_id}'
+                                    // name: widget.name,
+                                    ));
+                            Navigator.of(context).push(route);
+                          },
+                          child: Text(
+                            "ดำเนินการต่อ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                          elevation: 0),
-                    ),
-                  )),
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(20), // <-- Radius
+                              ),
+                              elevation: 0),
+                        ),
+                      )),
                   // Button_Continue(
                   //   button_text: "ดำเนินการต่อ",
                   //   page: Profile(),
