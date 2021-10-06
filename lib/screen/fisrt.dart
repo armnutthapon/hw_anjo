@@ -1,6 +1,10 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:anjo_homework/components/button_continue.dart';
+import 'package:anjo_homework/components/input_dob.dart';
+import 'package:anjo_homework/components/input_from.dart';
 import 'package:anjo_homework/screen/second.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -11,22 +15,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController name = TextEditingController();
-  TextEditingController id = TextEditingController();
-  TextEditingController date = TextEditingController();
-  TextEditingController month = TextEditingController();
-  TextEditingController year = TextEditingController();
+  var name = TextEditingController();
+  var id = TextEditingController();
+  var date = TextEditingController().text;
+  var month = TextEditingController().text;
+  var year = TextEditingController().text;
+
   bool isSwitched = false;
   bool _enabled = false;
-
-  void dispose() {
-    name.dispose();
-    id.dispose();
-    date.dispose();
-    month.dispose();
-    year.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,318 +50,129 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 7),
-                    height: size.height * 0.2,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.only(left: 15, top: 10),
-                                child: Text(
-                                  "ชื่อของฉัน",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Mitr'),
-                                ))
-                          ],
-                        ),
-                        Container(
-                            // color: Colors.red,
-                            margin: EdgeInsets.fromLTRB(15, 10, 15, 5),
-                            height: size.height * 0.07,
-                            child: TextField(
-                              controller: name,
-                              decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 20),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  filled: true,
-                                  hintStyle: TextStyle(color: Colors.grey[500]),
-                                  hintText: "ระบุชื่อ",
-                                  fillColor: Colors.grey.shade100),
-                            )),
-                        Container(
-                          padding: EdgeInsets.only(left: 15, right: 10),
-                          child: Wrap(
-                            children: [
-                              Text(
-                                "นี่คือชื่อที่จะปรากฏบนโปรไฟล์ของคุณ และจะไม่สามารถเปลี่ยนแปลงภายหลังได้",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: 'Mitr'),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+            Container(
+              margin: EdgeInsets.only(top: 7),
+              padding: EdgeInsets.only(bottom: 10),
+              color: Colors.white,
+              child: Input_From(
+                input: name,
+                topic: "ชื่อของฉัน",
+                hint: "ระบุชื่อ",
+                description:
+                    "นี่คือชื่อที่จะปรากฏบนโปรไฟล์ของคุณ และจะไม่สามารถเปลี่ยนแปลงภายหลังได้",
+                icon: Icon(null),
+              ),
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 7),
-                    height: size.height * 0.28,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.only(left: 15, top: 10),
-                                child: Text(
-                                  "ANJO ID",
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: 'Mitr'),
-                                ))
-                          ],
-                        ),
-                        Container(
-                            // color: Colors.red,
-                            margin: EdgeInsets.fromLTRB(15, 10, 15, 5),
-                            height: size.height * 0.07,
-                            child: TextField(
-                              controller: id,
-                              decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(left: 20),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  filled: true,
-                                  hintStyle: TextStyle(color: Colors.grey[500]),
-                                  hintText: "ระบุ ID",
-                                  fillColor: Colors.grey.shade100),
-                            )),
-                        Container(
-                          padding:
-                              EdgeInsets.only(left: 15, right: 10, bottom: 5),
-                          child: Wrap(
-                            children: [
-                              Text(
-                                "คุณสามารถใช้ ANJO ID เพื่อระบุตัวตนและให้ผู้ใช้คนอื่นเพิ่มเพื่อน ซึ่งไม่สามารถเปลี่ยนแปลงภายหลังได้",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey.shade600,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: 'Mitr'),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15, right: 15),
-                          child: Row(
-                            children: [
-                              Text(
-                                "อนุญาติให้เพิ่มเพื่อนด้วย ID",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'Mitr'),
-                              ),
-                              Spacer(),
-                              Switch(
-                                value: isSwitched,
-                                onChanged: (value) {
-                                  setState(() {
-                                    isSwitched = value;
-                                  });
-                                },
-                                activeTrackColor: Colors.pink,
-                                activeColor: Colors.white,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+            Container(
+                margin: EdgeInsets.only(top: 5),
+                padding: EdgeInsets.only(bottom: 10),
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    Input_From(
+                      input: id,
+                      topic: "ANJO ID",
+                      hint: "ระะบุ ID",
+                      description:
+                          "คุณสามารถใช้ ANJO ID เพื่อระบุตัวตนและให้ผู้ใช้คนอื่นเพิ่มเพื่อน ซึ่งไม่สามารถเปลี่ยนแปลงภายหลังได้",
+                      icon: Icon(Icons.check_circle),
                     ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 7),
-                    height: size.height * 0.36,
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 15, top: 5, bottom: 5),
-                                child: Text(
-                                  "วันเกิดของฉัน",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ))
-                          ],
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(bottom: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [Text("วัน"), Text("เดือน"), Text("ปี")],
+                    Divider(),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Row(
+                        children: [
+                          const Text(
+                            "อนุญาติให้เพิ่มเพื่อนด้วย ID",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black87,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Mitr'),
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(bottom: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                  width: 80,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                          height: size.height * 0.06,
-                                          child: TextField(
-                                            controller: date,
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.all(10.0),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                filled: true,
-                                                hintStyle: TextStyle(
-                                                    color: Colors.grey[500]),
-                                                fillColor:
-                                                    Colors.grey.shade100),
-                                          )),
-                                    ],
-                                  )),
-                              Text("-"),
-                              SizedBox(
-                                  width: 80,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                          height: size.height * 0.06,
-                                          child: TextField(
-                                            controller: month,
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.all(10.0),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                filled: true,
-                                                hintStyle: TextStyle(
-                                                    color: Colors.grey[500]),
-                                                fillColor:
-                                                    Colors.grey.shade100),
-                                          )),
-                                    ],
-                                  )),
-                              Text("-"),
-                              SizedBox(
-                                  width: 80,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                          height: size.height * 0.06,
-                                          child: TextField(
-                                            controller: year,
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.all(10.0),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                filled: true,
-                                                hintStyle: TextStyle(
-                                                    color: Colors.grey[500]),
-                                                fillColor:
-                                                    Colors.grey.shade100),
-                                          )),
-                                    ],
-                                  )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(
-                              left: 15, right: 10, top: 5, bottom: 20),
-                          child: Wrap(
-                            children: [
-                              Text(
-                                "หลังจากลงทะเบียนแล้ว คุณไม่สามารถแก้ไขวันเกิดของคุณได้ กรุณาตรวจสอบวันเกิดของคุณให้ถูกต้อง",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey.shade600,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                          width: size.width * 0.9,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Second()),
-                              );
+                          Spacer(),
+                          CupertinoSwitch(
+                            value: isSwitched,
+                            onChanged: (value) {
+                              setState(() {
+                                isSwitched = value;
+                              });
                             },
-                            child: Text(
-                              'ดำเนินการต่อ',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(20), // <-- Radius
-                                ),
-                                elevation: 0),
+                            activeColor: Colors.pink,
                           ),
-                        ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+            Container(
+              margin: EdgeInsets.only(top: 7),
+              height: size.height * 0.4,
+              color: Colors.white,
+              child: Column(
+                children: [
+                  const DOB_topic(topic: "วันเกิดของฉัน"),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        // DOB_input(
+                        //   topic: "วัน",
+                        //   hint: "วัน",
+                        //   width: 80,
+                        // ),
+                        // DOB_input(
+                        //   topic: "เดือน",
+                        //   hint: "เดือน",
+                        //   width: 80,
+                        // ),
+                        // DOB_input(
+                        //   topic: "ปี",
+                        //   hint: "ปี",
+                        //   width: 100,
+                        // ),
                       ],
                     ),
                   ),
-                ),
-              ],
+                  DOB_description(
+                      description:
+                          "หลังจากลงทะเบียนแล้ว คุณไม่สามารถแก้ไขวันเกิดของคุณได้ กรุณาตรวจสอบวันเกิดของคุณให้ถูกต้อง"),
+                  Container(
+                      margin: EdgeInsets.only(top: 30),
+                      child: SizedBox(
+                        height: 50,
+                        width: size.width * 0.9,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            var route = new MaterialPageRoute(
+                                builder: (BuildContext context) => Second(
+                                      name: name.text,
+                                    ));
+                            Navigator.of(context).push(route);
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => widget.page),
+                            // );
+                          },
+                          child: Text(
+                            "ดำเนินการต่อ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(20), // <-- Radius
+                              ),
+                              elevation: 0),
+                        ),
+                      )),
+                ],
+              ),
             ),
           ],
         ),
