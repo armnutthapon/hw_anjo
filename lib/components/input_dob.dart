@@ -31,13 +31,16 @@ class DOB_input extends StatefulWidget {
   final String topic;
   final String hint;
   final double width;
-  const DOB_input(
-      {Key? key,
-      required this.hint,
-      required this.width,
-      required this.topic,
-      required this.input_dob})
-      : super(key: key);
+  final String error;
+
+  const DOB_input({
+    Key? key,
+    required this.hint,
+    required this.width,
+    required this.topic,
+    required this.input_dob,
+    required this.error,
+  }) : super(key: key);
 
   @override
   _DOB_inputState createState() => _DOB_inputState();
@@ -57,19 +60,25 @@ class _DOB_inputState extends State<DOB_input> {
               child: Text(widget.topic),
             ),
             Container(
-                height: size.height * 0.06,
-                child: TextField(
-                  controller: widget.input_dob,
-                  textAlign: TextAlign.center,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10.0),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      hintStyle: TextStyle(color: Colors.grey[500]),
-                      hintText: widget.hint),
-                )),
+              child: TextFormField(
+                controller: widget.input_dob,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(10.0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    hintStyle: TextStyle(color: Colors.grey[500]),
+                    hintText: widget.hint),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '${widget.error}';
+                  }
+                  return null;
+                },
+              ),
+            ),
           ],
         ));
   }

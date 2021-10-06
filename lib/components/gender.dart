@@ -128,7 +128,7 @@ class _Interest_GenderState extends State<Interest_Gender> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      margin: EdgeInsets.only(top: 7),
+      margin: EdgeInsets.only(top: 5),
       height: size.height * 0.08,
       color: Colors.white,
       child: Column(

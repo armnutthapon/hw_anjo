@@ -1,30 +1,25 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 
-class Input_From extends StatefulWidget {
+class Input_From_NoDescription extends StatefulWidget {
   final String topic;
   final String hint;
-  final String description;
   final String error;
-  final Icon icon;
-  final TextEditingController input;
 
-  const Input_From({
+  final TextEditingController input;
+  const Input_From_NoDescription({
     Key? key,
     required this.topic,
     required this.hint,
-    required this.description,
-    required this.icon,
     required this.input,
     required this.error,
   }) : super(key: key);
 
   @override
-  _Input_FromState createState() => _Input_FromState();
+  _Input_From_NoDescriptionState createState() =>
+      _Input_From_NoDescriptionState();
 }
 
-class _Input_FromState extends State<Input_From> {
+class _Input_From_NoDescriptionState extends State<Input_From_NoDescription> {
   @override
   int textLength = 0;
 
@@ -50,7 +45,6 @@ class _Input_FromState extends State<Input_From> {
         Container(
             // color: Colors.red,
             margin: EdgeInsets.fromLTRB(15, 10, 15, 5),
-            // height: size.height * 0.08,
             child: TextFormField(
               controller: widget.input,
               decoration: InputDecoration(
@@ -74,21 +68,6 @@ class _Input_FromState extends State<Input_From> {
                 return null;
               },
             )),
-        Container(
-            padding: EdgeInsets.only(left: 15, right: 15),
-            child: Column(
-              children: [
-                Text(
-                  widget.description,
-                  // "นี่คือชื่อที่จะปรากฏบนโปรไฟล์ของคุณ และจะไม่สามารถเปลี่ยนแปลงภายหลังได้",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey.shade600,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ))
       ],
     );
   }
