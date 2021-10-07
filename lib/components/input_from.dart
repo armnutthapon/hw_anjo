@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Input_From extends StatefulWidget {
   final String topic;
   final String hint;
   final String description;
   final String error;
+  final int maxLength;
+
   final Icon icon;
   final TextEditingController input;
 
@@ -18,6 +21,7 @@ class Input_From extends StatefulWidget {
     required this.icon,
     required this.input,
     required this.error,
+    required this.maxLength,
   }) : super(key: key);
 
   @override
@@ -48,13 +52,12 @@ class _Input_FromState extends State<Input_From> {
           ],
         ),
         Container(
-            // color: Colors.red,
             margin: EdgeInsets.fromLTRB(15, 10, 15, 5),
-            // height: size.height * 0.08,
             child: TextFormField(
+              maxLength: widget.maxLength >= 500 ? widget.maxLength : null,
               controller: widget.input,
               decoration: InputDecoration(
-                // suffixIcon: textLength > 5 ? widget.icon : null,
+                suffixIcon: textLength > 5 ? widget.icon : null,
                 contentPadding: EdgeInsets.only(left: 20, right: 20),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),

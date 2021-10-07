@@ -10,9 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class Second extends StatefulWidget {
-  final String name;
-  final String user_id;
   final bool isSwitched;
+
+  final TextEditingController name;
+  final TextEditingController user_id;
+
   final String dob;
 
   const Second({
@@ -83,6 +85,7 @@ class _SecondState extends State<Second> {
                           "เพิ่มคำอธิบายเพิ่มเติมเกี่ยวกับตัวคุณเพื่อแนะนำตัวกับคนอื่นๆใน ANJO เพื่อเพิ่มโอกาสในการแมตช์",
                       icon: Icon(null),
                       error: 'กรุณากรอกข้อมูล',
+                      maxLength: 500,
                     ),
                     Input_From_NoDescription(
                       input: work,
@@ -106,12 +109,12 @@ class _SecondState extends State<Second> {
                               if (_formkey.currentState!.validate()) {
                                 var route = new MaterialPageRoute(
                                     builder: (BuildContext context) => Profile(
-                                        name: '${widget.name}',
-                                        user_id: '${widget.user_id}',
-                                        dob: '${widget.dob}',
-                                        about_me: about_me.text,
-                                        work: work.text,
-                                        education: education.text,
+                                        name: widget.name,
+                                        user_id: widget.user_id,
+                                        dob: widget.dob,
+                                        about_me: about_me,
+                                        work: work,
+                                        education: education,
                                         isSwitched: false
                                         // name: widget.name,
                                         ));

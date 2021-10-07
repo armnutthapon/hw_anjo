@@ -1,16 +1,18 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:anjo_homework/components/profile_edit.dart';
 import 'package:anjo_homework/components/profile_information.dart';
 import 'package:anjo_homework/components/profile_topic.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
-  final String name;
-  final String user_id;
+  final TextEditingController name;
+  final TextEditingController user_id;
+  final TextEditingController about_me;
+  final TextEditingController work;
+  final TextEditingController education;
+
   final String dob;
-  final String about_me;
-  final String work;
-  final String education;
 
   const Profile(
       {Key? key,
@@ -19,7 +21,8 @@ class Profile extends StatefulWidget {
       required this.dob,
       required this.about_me,
       required this.work,
-      required this.education, isSwitched})
+      required this.education,
+      isSwitched})
       : super(key: key);
 
   @override
@@ -30,18 +33,25 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "โปรไฟล์",
+          "ข้อมูลโปรไฟล์",
           style: TextStyle(
-              fontSize: 20,
-              color: Colors.black87,
-              fontWeight: FontWeight.w500,
-              fontFamily: 'Mitr'),
+            fontSize: 20,
+            color: Colors.black87,
+            fontWeight: FontWeight.w500,
+          ),
         ),
+        actions: [
+          TextButton(
+              onPressed: () {},
+              child: Text(
+                "บันทึก",
+                style: TextStyle(fontSize: 16, color: Colors.blue),
+              ))
+        ],
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
@@ -61,19 +71,19 @@ class _ProfileState extends State<Profile> {
               color: Colors.white,
               child: Column(
                 children: [
-                  Profile_Information(
+                  Profile_Edit(
                     topic: "คำอธิบายเกี่ยวกับตัวฉัน",
-                    data: "${widget.about_me}",
+                    data: widget.about_me,
                   ),
                   Divider(),
-                  Profile_Information(
+                  Profile_Edit(
                     topic: "อาชีพ",
-                    data: "${widget.work}",
+                    data: widget.work,
                   ),
                   Divider(),
-                  Profile_Information(
+                  Profile_Edit(
                     topic: "สถานศึกษา",
-                    data: "${widget.education}",
+                    data: widget.education,
                   ),
                 ],
               ),
@@ -94,7 +104,7 @@ class _ProfileState extends State<Profile> {
                   Divider(),
                   Profile_Information(
                     topic: "เพศของฉัน",
-                    data: "ผู้ชาย | ชอบเพศตรงข้าม",
+                    data: "ผู้ชาย | สนใจเพศตรงข้าม",
                   ),
                 ],
               ),
@@ -114,7 +124,7 @@ class _ProfileState extends State<Profile> {
                   ),
                   Divider(),
                   Profile_Information(
-                    topic: "จังหวัด",
+                    topic: "เมือง",
                     data: "ภูเก็ต",
                   ),
                 ],
@@ -129,14 +139,14 @@ class _ProfileState extends State<Profile> {
               color: Colors.white,
               child: Column(
                 children: [
-                  Profile_Information(
+                  Profile_Edit(
                     topic: "ชื่อของฉัน",
-                    data: "${widget.name}",
+                    data: widget.name,
                   ),
                   Divider(),
-                  Profile_Information(
+                  Profile_Edit(
                     topic: "ANJO ID",
-                    data: "${widget.user_id}",
+                    data: widget.user_id,
                   ),
                   Divider(),
                   Toggle_Switch()
@@ -145,12 +155,12 @@ class _ProfileState extends State<Profile> {
             ),
             Container(
               padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-              margin: EdgeInsets.only(top: 5, bottom: 10),
+              margin: EdgeInsets.only(top: 5, bottom: 5),
               color: Colors.white,
               child: Column(
                 children: [
                   Profile_Information(
-                    topic: "วันเกิดของฉัน",
+                    topic: "ANJO ID",
                     data: "${widget.dob}",
                   ),
                 ],

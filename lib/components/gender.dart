@@ -178,6 +178,8 @@ class MyBottomSheet extends StatefulWidget {
 }
 
 class _MyBottomSheetState extends State<MyBottomSheet> {
+  int selectedIndex = -1;
+
   int index_interest = 0;
   var currentindex_interest = 0;
 
@@ -187,6 +189,17 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
     });
     print(currentindex_interest);
   }
+
+  List data = [
+    {'id': 0, 'name': 'ชอบเพศตรงข้าม', 'isSelected': false},
+    {'id': 1, 'name': 'เกย์', 'isSelected': false},
+    {'id': 2, 'name': 'ไบเซกซ์ชัวล์', 'isSelected': false},
+    {'id': 3, 'name': 'ทรานส์เจนเดอร์', 'isSelected': false},
+    {'id': 4, 'name': 'เควียร์', 'isSelected': false}
+  ];
+
+  // final List<Map> data = List.generate(100,
+  //     (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
 
   Widget interest(
     String value,
@@ -228,13 +241,11 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
     Size size = MediaQuery.of(context).size;
 
     return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      height: 400,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        height: 400,
+        child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           Container(
             padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
             child: Row(
@@ -277,13 +288,54 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
               ],
             ),
           ),
-          Container(
-            child: Column(
-              children: [Text("data")],
-            ),
-          ),
-        ],
-      ),
-    );
+          Expanded(
+              child: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (BuildContext ctx, index) {
+              return Column(
+                children: [
+                  Container(
+                    child: ListTile(
+                        onTap: () {
+                          setState(() {
+                            data[index]['isSelected'] =
+                                !data[index]['isSelected'];
+                          });
+                        },
+                        title: Row(
+                          children: [
+                            Text(
+                              data[index]['name'],
+                              style: TextStyle(
+                                color: data[index]['isSelected'] == true
+                                    ? Colors.pink
+                                    : Colors.black54,
+                              ),
+                            ),
+                            Icon(
+                              data[index]['isSelected'] == true
+                                  ? Icons.check
+                                  : null,
+                              color: Colors.pink,
+                              size: 20,
+                            )
+                          ],
+                        )),
+                  ),
+                  Divider()
+                ],
+              );
+            },
+          ))
+        ]));
   }
+}
+
+class Paint {
+  final int id;
+  final String title;
+  final Color colorpicture;
+  bool selected = false;
+
+  Paint(this.id, this.title, this.colorpicture);
 }

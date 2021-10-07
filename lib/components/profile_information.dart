@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Profile_Information extends StatefulWidget {
@@ -32,8 +33,8 @@ class _Profile_InformationState extends State<Profile_Information> {
         widget.data,
         style: TextStyle(
             fontSize: 14,
-            color: Colors.black54,
-            fontWeight: FontWeight.w400,
+            color: Colors.black87,
+            fontWeight: FontWeight.w300,
             fontFamily: 'Mitr'),
       ),
     );
@@ -64,15 +65,14 @@ class Toggle_SwitchState extends State<Toggle_Switch> {
             fontWeight: FontWeight.w500,
             fontFamily: 'Mitr'),
       ),
-      trailing: Switch(
+      trailing: CupertinoSwitch(
         value: isSwitched,
         onChanged: (value) {
           setState(() {
             isSwitched = value;
           });
         },
-        activeTrackColor: Colors.pink,
-        activeColor: Colors.white,
+        activeColor: Colors.pink,
       ),
     );
   }

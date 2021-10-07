@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 
 // import 'package:anjo_homework/components/button_continue.dart';
 import 'package:anjo_homework/components/input_dob.dart';
@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       "นี่คือชื่อที่จะปรากฏบนโปรไฟล์ของคุณ และจะไม่สามารถเปลี่ยนแปลงภายหลังได้",
                   icon: Icon(null),
                   error: "กรุณากรอกชื่อ",
+                  maxLength: 50,
                 ),
               ),
               Container(
@@ -89,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             "คุณสามารถใช้ ANJO ID เพื่อระบุตัวตนและให้ผู้ใช้คนอื่นเพิ่มเพื่อน ซึ่งไม่สามารถเปลี่ยนแปลงภายหลังได้",
                         icon: Icon(Icons.check_circle),
                         error: "กรุณากรอก ID",
+                        maxLength: 50,
                       ),
                       Divider(),
                       Padding(
@@ -169,8 +171,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 getDOB();
                                 var route = new MaterialPageRoute(
                                     builder: (BuildContext context) => Second(
-                                        name: name.text,
-                                        user_id: user_id.text,
+                                        name: name,
+                                        user_id: user_id,
                                         dob: dob,
                                         isSwitched: isSwitched));
                                 Navigator.of(context).push(route);
