@@ -5,11 +5,11 @@ import 'package:anjo_homework/components/button_continue.dart';
 import 'package:anjo_homework/components/gender.dart';
 import 'package:anjo_homework/components/input_from.dart';
 import 'package:anjo_homework/components/input_from_nodescription.dart';
-import 'package:anjo_homework/screen/profile.dart';
+import 'package:anjo_homework/screen/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-class Second extends StatefulWidget {
+class Create_Information extends StatefulWidget {
   final bool isSwitched;
 
   final TextEditingController name;
@@ -17,7 +17,7 @@ class Second extends StatefulWidget {
 
   final String dob;
 
-  const Second({
+  const Create_Information({
     Key? key,
     required this.name,
     required this.user_id,
@@ -26,10 +26,10 @@ class Second extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SecondState createState() => _SecondState();
+  _Create_InformationState createState() => _Create_InformationState();
 }
 
-class _SecondState extends State<Second> {
+class _Create_InformationState extends State<Create_Information> {
   var about_me = TextEditingController();
   var work = TextEditingController();
   var education = TextEditingController();

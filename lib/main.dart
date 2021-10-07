@@ -1,4 +1,4 @@
-import 'package:anjo_homework/screen/fisrt.dart';
+import 'package:anjo_homework/screen/create_user.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.pink, fontFamily: 'Mitr'),
-      home: MyHomePage(),
+      home: Create_User(),
     );
   }
 }

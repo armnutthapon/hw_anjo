@@ -3,18 +3,18 @@
 // import 'package:anjo_homework/components/button_continue.dart';
 import 'package:anjo_homework/components/input_dob.dart';
 import 'package:anjo_homework/components/input_from.dart';
-import 'package:anjo_homework/screen/second.dart';
+import 'package:anjo_homework/screen/create_information.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class Create_User extends StatefulWidget {
+  const Create_User({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _Create_UserState createState() => _Create_UserState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _Create_UserState extends State<Create_User> {
   final _formkey = GlobalKey<FormState>();
 
   var name = TextEditingController();
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Input_From(
                   input: name,
                   topic: "ชื่อของฉัน",
-                  hint: "ระบุชื่อ",
+                  hint: "กรอกชื่อ",
                   description:
                       "นี่คือชื่อที่จะปรากฏบนโปรไฟล์ของคุณ และจะไม่สามารถเปลี่ยนแปลงภายหลังได้",
                   icon: Icon(null),
@@ -170,7 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               if (_formkey.currentState!.validate()) {
                                 getDOB();
                                 var route = new MaterialPageRoute(
-                                    builder: (BuildContext context) => Second(
+                                    builder: (BuildContext context) => Create_Information(
                                         name: name,
                                         user_id: user_id,
                                         dob: dob,

@@ -178,6 +178,8 @@ class MyBottomSheet extends StatefulWidget {
 }
 
 class _MyBottomSheetState extends State<MyBottomSheet> {
+  String select = '';
+
   int selectedIndex = -1;
 
   int index_interest = 0;
@@ -300,6 +302,8 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                           setState(() {
                             data[index]['isSelected'] =
                                 !data[index]['isSelected'];
+                            select = data[index]['name'] + " " + select;
+                            print(select);
                           });
                         },
                         title: Row(
@@ -329,13 +333,4 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
           ))
         ]));
   }
-}
-
-class Paint {
-  final int id;
-  final String title;
-  final Color colorpicture;
-  bool selected = false;
-
-  Paint(this.id, this.title, this.colorpicture);
 }

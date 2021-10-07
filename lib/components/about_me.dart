@@ -1,5 +1,5 @@
 import 'package:anjo_homework/components/button_continue.dart';
-import 'package:anjo_homework/screen/profile.dart';
+import 'package:anjo_homework/screen/my_profile.dart';
 import 'package:flutter/material.dart';
 
 class About_Me extends StatefulWidget {

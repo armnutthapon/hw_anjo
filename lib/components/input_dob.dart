@@ -72,8 +72,11 @@ class _DOB_inputState extends State<DOB_input> {
                     hintStyle: TextStyle(color: Colors.grey[500]),
                     hintText: widget.hint),
                 validator: (value) {
+                  final numericRegex = RegExp(r'^[0-9]*$');
                   if (value == null || value.isEmpty) {
                     return '${widget.error}';
+                  } else if (!numericRegex.hasMatch(value)) {
+                    return 'ข้อมูลไม่ภูกต้อง';
                   }
                   return null;
                 },

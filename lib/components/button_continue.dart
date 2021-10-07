@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:anjo_homework/screen/second.dart';
+import 'package:anjo_homework/screen/create_information.dart';
 import 'package:flutter/material.dart';
 
 class Button_Continue extends StatefulWidget {
