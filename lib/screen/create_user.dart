@@ -24,15 +24,15 @@ class _Create_UserState extends State<Create_User> {
   var month = TextEditingController();
   var year = TextEditingController();
 
-  String dob = '';
+  // String dob = '';
 
   bool isSwitched = false;
   bool _enabled = false;
 
-  void getDOB() {
-    dob = "${date.text} / ${month.text} / ${year.text} ";
-    return;
-  }
+  // void getDOB() {
+  //   dob = "${date.text} / ${month.text} / ${year.text} ";
+  //   return;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -171,7 +171,9 @@ class _Create_UserState extends State<Create_User> {
                                 page: Create_Information(
                                     name: name,
                                     user_id: user_id,
-                                    dob: dob,
+                                    date: date.text,
+                                    month: month.text,
+                                    year: year.text,
                                     isSwitched: isSwitched),
                                 formkey: _formkey))),
                   ],

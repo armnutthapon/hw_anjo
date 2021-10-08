@@ -11,17 +11,22 @@ import 'package:flutter/painting.dart';
 
 class Create_Information extends StatefulWidget {
   final bool isSwitched;
+  final String date;
+  final String month;
+  final String year;
 
   final TextEditingController name;
   final TextEditingController user_id;
 
-  final String dob;
+  // final String dob;
 
   const Create_Information({
     Key? key,
     required this.name,
     required this.user_id,
-    required this.dob,
+    required this.date,
+    required this.month,
+    required this.year,
     required this.isSwitched,
   }) : super(key: key);
 
@@ -109,7 +114,10 @@ class _Create_InformationState extends State<Create_Information> {
                                 page: Profile(
                                     name: widget.name,
                                     user_id: widget.user_id,
-                                    dob: widget.dob,
+                                    // dob: widget.dob,
+                                    date: widget.date,
+                                    month: widget.month,
+                                    year: widget.year,
                                     about_me: about_me,
                                     work: work,
                                     education: education,

@@ -11,14 +11,20 @@ class Profile extends StatefulWidget {
   final TextEditingController about_me;
   final TextEditingController work;
   final TextEditingController education;
+  final String date;
+  final String month;
+  final String year;
 
-  final String dob;
+  // final String dob;
 
   const Profile(
       {Key? key,
       required this.name,
       required this.user_id,
-      required this.dob,
+      // required this.dob,
+      required this.date,
+      required this.month,
+      required this.year,
       required this.about_me,
       required this.work,
       required this.education,
@@ -161,7 +167,11 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Profile_Information(
                     topic: "วันเกิด",
-                    data: "${widget.dob}",
+                    data: "${widget.date}" +
+                        " / " +
+                        "${widget.month}" +
+                        " / " +
+                        "${widget.year}",
                   ),
                 ],
               ),
