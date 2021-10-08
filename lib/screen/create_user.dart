@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 
 // import 'package:anjo_homework/components/button_continue.dart';
+import 'package:anjo_homework/components/button_continue.dart';
 import 'package:anjo_homework/components/input_dob.dart';
 import 'package:anjo_homework/components/input_from.dart';
 import 'package:anjo_homework/screen/create_information.dart';
@@ -163,37 +164,16 @@ class _Create_UserState extends State<Create_User> {
                     Container(
                         margin: EdgeInsets.only(top: 30),
                         child: SizedBox(
-                          height: 50,
-                          width: size.width * 0.9,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (_formkey.currentState!.validate()) {
-                                getDOB();
-                                var route = new MaterialPageRoute(
-                                    builder: (BuildContext context) => Create_Information(
-                                        name: name,
-                                        user_id: user_id,
-                                        dob: dob,
-                                        isSwitched: isSwitched));
-                                Navigator.of(context).push(route);
-                              }
-                            },
-                            child: Text(
-                              "ดำเนินการต่อ",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(20), // <-- Radius
-                                ),
-                                elevation: 0),
-                          ),
-                        )),
+                            height: 50,
+                            width: size.width * 0.9,
+                            child: Button_Continue(
+                                button_text: "ดำเนินการต่อ",
+                                page: Create_Information(
+                                    name: name,
+                                    user_id: user_id,
+                                    dob: dob,
+                                    isSwitched: isSwitched),
+                                formkey: _formkey))),
                   ],
                 ),
               ),

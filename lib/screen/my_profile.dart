@@ -160,7 +160,7 @@ class _ProfileState extends State<Profile> {
               child: Column(
                 children: [
                   Profile_Information(
-                    topic: "ANJO ID",
+                    topic: "วันเกิด",
                     data: "${widget.dob}",
                   ),
                 ],

@@ -102,41 +102,19 @@ class _Create_InformationState extends State<Create_Information> {
                     Container(
                         margin: EdgeInsets.only(top: 20, bottom: 65),
                         child: SizedBox(
-                          height: 50,
-                          width: size.width * 0.9,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              if (_formkey.currentState!.validate()) {
-                                var route = new MaterialPageRoute(
-                                    builder: (BuildContext context) => Profile(
-                                        name: widget.name,
-                                        user_id: widget.user_id,
-                                        dob: widget.dob,
-                                        about_me: about_me,
-                                        work: work,
-                                        education: education,
-                                        isSwitched: false
-                                        // name: widget.name,
-                                        ));
-                                Navigator.of(context).push(route);
-                              }
-                            },
-                            child: Text(
-                              "ดำเนินการต่อ",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(20), // <-- Radius
-                                ),
-                                elevation: 0),
-                          ),
-                        )),
+                            height: 50,
+                            width: size.width * 0.9,
+                            child: Button_Continue(
+                                button_text: "ดำเนินการต่อ",
+                                page: Profile(
+                                    name: widget.name,
+                                    user_id: widget.user_id,
+                                    dob: widget.dob,
+                                    about_me: about_me,
+                                    work: work,
+                                    education: education,
+                                    isSwitched: false),
+                                formkey: _formkey))),
                   ],
                 ),
               )
