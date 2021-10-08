@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
-
-// import 'package:anjo_homework/components/button_continue.dart';
 import 'package:anjo_homework/components/button_continue.dart';
 import 'package:anjo_homework/components/input_dob.dart';
 import 'package:anjo_homework/components/input_from.dart';

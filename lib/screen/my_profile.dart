@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:anjo_homework/components/profile_edit.dart';
 import 'package:anjo_homework/components/profile_information.dart';
 import 'package:anjo_homework/components/profile_topic.dart';
