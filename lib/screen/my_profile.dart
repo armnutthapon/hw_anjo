@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors, unnecessary_new
+
 import 'package:anjo_homework/components/profile_edit.dart';
 import 'package:anjo_homework/components/profile_information.dart';
 import 'package:anjo_homework/components/profile_topic.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Profile extends StatefulWidget {
   final TextEditingController name;
@@ -12,22 +15,24 @@ class Profile extends StatefulWidget {
   final String date;
   final String month;
   final String year;
+  final String dob;
 
   // final String dob;
 
-  const Profile(
-      {Key? key,
-      required this.name,
-      required this.user_id,
-      // required this.dob,
-      required this.date,
-      required this.month,
-      required this.year,
-      required this.about_me,
-      required this.work,
-      required this.education,
-      isSwitched})
-      : super(key: key);
+  const Profile({
+    Key? key,
+    required this.name,
+    required this.user_id,
+    // required this.dob,
+    required this.date,
+    required this.month,
+    required this.year,
+    required this.about_me,
+    required this.work,
+    required this.education,
+    required this.dob,
+    isSwitched,
+  }) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -58,7 +63,7 @@ class _ProfileState extends State<Profile> {
         ],
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Get.back(),
         ),
         backgroundColor: Colors.white, //You can make this transparent
         elevation: 0.0, //No shadow
@@ -163,14 +168,7 @@ class _ProfileState extends State<Profile> {
               color: Colors.white,
               child: Column(
                 children: [
-                  Profile_Information(
-                    topic: "วันเกิด",
-                    data: "${widget.date}" +
-                        " / " +
-                        "${widget.month}" +
-                        " / " +
-                        "${widget.year}",
-                  ),
+                  Profile_Information(topic: "วันเกิด", data: "${widget.dob}"),
                 ],
               ),
             ),

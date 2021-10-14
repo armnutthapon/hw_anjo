@@ -79,6 +79,8 @@ class _MyGenderState extends State<MyGender> {
     });
   }
 
+  var myGender;
+
   Widget gender(String value, Color color, int index, IconData icons) {
     return Expanded(
       child: Container(
@@ -90,6 +92,10 @@ class _MyGenderState extends State<MyGender> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             onPressed: () {
               select_gender(index);
+              setState(() {
+                myGender = (value);
+                print("เพศ : " + myGender);
+              });
             },
             child: Container(
               padding: EdgeInsets.all(10),
@@ -173,14 +179,14 @@ class _Interest_GenderState extends State<Interest_Gender> {
 }
 
 class MyBottomSheet extends StatefulWidget {
+  final String interestGender = '';
+
   @override
   _MyBottomSheetState createState() => _MyBottomSheetState();
 }
 
 class _MyBottomSheetState extends State<MyBottomSheet> {
   String select = '';
-
-  int selectedIndex = -1;
 
   int index_interest = 0;
   var currentindex_interest = 0;
@@ -192,16 +198,8 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
     print(currentindex_interest);
   }
 
-  List data = [
-    {'id': 0, 'name': 'ชอบเพศตรงข้าม', 'isSelected': false},
-    {'id': 1, 'name': 'เกย์', 'isSelected': false},
-    {'id': 2, 'name': 'ไบเซกซ์ชัวล์', 'isSelected': false},
-    {'id': 3, 'name': 'ทรานส์เจนเดอร์', 'isSelected': false},
-    {'id': 4, 'name': 'เควียร์', 'isSelected': false}
-  ];
-
-  // final List<Map> data = List.generate(100,
-  //     (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
+  var interestGender;
+  var interestType;
 
   Widget interest(
     String value,
@@ -219,6 +217,8 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           onPressed: () {
             select_interest(index_interest);
+            interestGender = value;
+            print("เพศที่สนใจ : " + interestGender);
           },
           child: Container(
             padding: EdgeInsets.all(10),
@@ -236,6 +236,26 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
             ),
           )),
     );
+  }
+
+  List data = [
+    {'id': 0, 'name': 'ชอบเพศตรงข้าม', 'isSelected': false},
+    {'id': 1, 'name': 'เกย์', 'isSelected': false},
+    {'id': 2, 'name': 'ไบเซกซ์ชัวล์', 'isSelected': false},
+    {'id': 3, 'name': 'ทรานส์เจนเดอร์', 'isSelected': false},
+    {'id': 4, 'name': 'เควียร์', 'isSelected': false}
+  ];
+  late bool like;
+  List<Modal> userList = <Modal>[];
+
+  @override
+  void initState() {
+    userList.add(Modal(name: 'ชอบเพศตรงข้าม', isSelected: false));
+    userList.add(Modal(name: 'เกย์', isSelected: false));
+    userList.add(Modal(name: 'ไบเซกซ์ชัวล์', isSelected: false));
+    userList.add(Modal(name: 'เควียร์', isSelected: false));
+    userList.add(Modal(name: 'ทรานส์เจนเดอร์', isSelected: false));
+    super.initState();
   }
 
   @override
@@ -263,11 +283,11 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                 ),
                 TextButton(
                   child: Text(
-                    "ยกเลิก",
+                    "ตกลง",
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w300,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   onPressed: () => Navigator.pop(context),
@@ -292,39 +312,49 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
           ),
           Expanded(
               child: ListView.builder(
+            shrinkWrap: true,
             itemCount: data.length,
             itemBuilder: (BuildContext ctx, index) {
               return Column(
                 children: [
                   Container(
-                    child: ListTile(
-                        onTap: () {
-                          setState(() {
-                            data[index]['isSelected'] =
-                                !data[index]['isSelected'];
-                            select = data[index]['name'] + " " + select;
-                            print(select);
-                          });
-                        },
-                        title: Row(
-                          children: [
-                            Text(
-                              data[index]['name'],
-                              style: TextStyle(
-                                color: data[index]['isSelected'] == true
-                                    ? Colors.pink
-                                    : Colors.black54,
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    color: Colors.white,
+                    child: Row(
+                      children: [
+                        MaterialButton(
+                          child: Row(
+                            children: [
+                              Text(
+                                userList[index].name,
                               ),
-                            ),
-                            Icon(
-                              data[index]['isSelected'] == true
-                                  ? Icons.check
-                                  : null,
-                              color: Colors.pink,
-                              size: 20,
-                            )
-                          ],
-                        )),
+                              IconButton(
+                                icon: _iconControl(userList[index].isSelected),
+                                onPressed: () {
+                                  setState(() {
+                                    userList.forEach((element) {
+                                      element.isSelected = false;
+                                    });
+                                    userList[index].isSelected = true;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              userList.forEach((element) {
+                                element.isSelected = false;
+                              });
+                              userList[index].isSelected = true;
+                            });
+                            interestType = userList[index].name;
+                            print("สนใจ : " + interestType);
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   Divider()
                 ],
@@ -333,4 +363,24 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
           ))
         ]));
   }
+}
+
+_iconControl(bool like) {
+  if (like == false) {
+    return Icon(
+      null,
+    );
+  } else {
+    return Icon(
+      Icons.check,
+      color: Colors.pink,
+    );
+  }
+}
+
+class Modal {
+  String name;
+  bool isSelected;
+
+  Modal({required this.name, this.isSelected = false});
 }

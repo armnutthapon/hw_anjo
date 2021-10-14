@@ -2,6 +2,7 @@
 
 import 'package:anjo_homework/screen/create_information.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Button_Continue extends StatefulWidget {
   final GlobalKey<FormState> formkey;
@@ -27,9 +28,10 @@ class _Button_ContinueState extends State<Button_Continue> {
     return ElevatedButton(
       onPressed: () {
         if (widget.formkey.currentState!.validate()) {
-          var route = new MaterialPageRoute(
-              builder: (BuildContext context) => widget.page);
-          Navigator.of(context).push(route);
+          Get.to(widget.page);
+          // var route = new MaterialPageRoute(
+          //     builder: (BuildContext context) => widget.page);
+          // Navigator.of(context).push(route);
         }
 
         // Navigator.push(

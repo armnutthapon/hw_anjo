@@ -5,12 +5,14 @@ import 'package:anjo_homework/components/input_from_nodescription.dart';
 import 'package:anjo_homework/screen/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:get/get.dart';
 
 class Create_Information extends StatefulWidget {
   final bool isSwitched;
   final String date;
   final String month;
   final String year;
+  final String dob;
 
   final TextEditingController name;
   final TextEditingController user_id;
@@ -25,6 +27,7 @@ class Create_Information extends StatefulWidget {
     required this.month,
     required this.year,
     required this.isSwitched,
+    required this.dob,
   }) : super(key: key);
 
   @override
@@ -37,6 +40,7 @@ class _Create_InformationState extends State<Create_Information> {
   var education = TextEditingController();
 
   final _formkey = GlobalKey<FormState>();
+  bool _autoValidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +58,8 @@ class _Create_InformationState extends State<Create_Information> {
               fontFamily: 'Mitr'),
         ),
         leading: new IconButton(
-          icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+            icon: new Icon(Icons.arrow_back_ios, color: Colors.black),
+            onPressed: () => Get.back()),
         backgroundColor: Colors.white, //You can make this transparent
         elevation: 0.0, //No shadow
       ),
@@ -64,6 +67,7 @@ class _Create_InformationState extends State<Create_Information> {
       body: SingleChildScrollView(
         child: Form(
           key: _formkey,
+          autovalidate: _autoValidate,
           child: Column(
             children: [
               Container(
@@ -111,7 +115,7 @@ class _Create_InformationState extends State<Create_Information> {
                                 page: Profile(
                                     name: widget.name,
                                     user_id: widget.user_id,
-                                    // dob: widget.dob,
+                                    dob: widget.dob,
                                     date: widget.date,
                                     month: widget.month,
                                     year: widget.year,

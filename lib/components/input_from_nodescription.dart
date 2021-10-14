@@ -46,6 +46,7 @@ class _Input_From_NoDescriptionState extends State<Input_From_NoDescription> {
             // color: Colors.red,
             margin: EdgeInsets.fromLTRB(15, 10, 15, 5),
             child: TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: widget.input,
               decoration: InputDecoration(
                 // suffixIcon: textLength > 5 ? widget.icon : null,

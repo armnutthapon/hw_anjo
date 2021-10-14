@@ -52,6 +52,7 @@ class _Input_FromState extends State<Input_From> {
         Container(
             margin: EdgeInsets.fromLTRB(15, 10, 15, 5),
             child: TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               maxLength: widget.maxLength >= 500 ? widget.maxLength : null,
               controller: widget.input,
               decoration: InputDecoration(
